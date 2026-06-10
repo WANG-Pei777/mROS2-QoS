@@ -1,0 +1,23 @@
+build/
+workspace/*/build/
+results/
+platform/wifi/wifi_secrets.h
+platform/rtps/config_local.h
+sdkconfig
+!workspace/step7_full_qos/sdkconfig
+*.old
+*.lock
+*.log
+.env
+__pycache__/
+*.py[cod]
+.DS_Store
+._*
+managed_components/
+compile_commands.json
+
+# The templates of pub/sub functions
+## This file will be automatically generated/modified
+## during the build step. So you do not have to care
+## about this file.
+platform/templates.hpp

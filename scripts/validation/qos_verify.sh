@@ -17,7 +17,7 @@ TOPIC_SPIN_SECONDS="${QOS_VERIFY_TOPIC_SPIN_SECONDS:-8}"
 usage() {
   cat <<'EOF'
 Usage:
-  ./scripts/demo/qos_live_verify.sh [port] [capture_seconds]
+  ./scripts/validation/qos_verify.sh [port] [capture_seconds]
 
 Runs a real-hardware verification:
   1. Starts the ROS2 echo host.
@@ -68,7 +68,7 @@ fi
 rm -f "${SERIAL_LOG}" "${HOST_LOG}" "${TOPIC_LOG}"
 
 echo "[verify] starting ROS2 echo host"
-QOS_DEMO_SKIP_KILL=1 "${PROJECT_ROOT}/scripts/demo/qos_policy_host.sh" all \
+QOS_VALIDATION_SKIP_KILL=1 "${PROJECT_ROOT}/scripts/validation/qos_host.sh" all \
   > "${HOST_LOG}" 2>&1 &
 HOST_PID=$!
 trap 'kill ${HOST_PID} 2>/dev/null || true' EXIT
@@ -128,7 +128,7 @@ echo "[verify] capturing topic info"
 
 echo
 echo "===== Serial Key Lines ====="
-grep -E 'Reliability:|Durability|History|Deadline|Lifespan|Liveliness|Resources|Match state|matched|Warm-up|DEMO NOT READY|Echo reply|Reader heartbeat|Writer activity|finite lease behavior|RTPS QoS State|History cache|Writer deadline|Writer lifespan|Writer resource|Reader deadline|Reader received|Reader accepted-before-match|Reader out-of-order|Reader unmatched-writer|TX:|RX:|Packets Dropped|All phases complete|Resource stats|Rejected:' "${SERIAL_LOG}" || true
+grep -E 'Reliability:|Durability|History|Deadline|Lifespan|Liveliness|Resources|Match state|matched|Warm-up|VALIDATION NOT READY|Echo reply|Reader heartbeat|Writer activity|finite lease behavior|RTPS QoS State|History cache|Writer deadline|Writer lifespan|Writer resource|Reader deadline|Reader received|Reader accepted-before-match|Reader out-of-order|Reader unmatched-writer|TX:|RX:|Packets Dropped|All phases complete|Resource stats|Rejected:' "${SERIAL_LOG}" || true
 
 echo
 echo "===== Host Key Lines ====="
@@ -170,13 +170,13 @@ echo
 echo "===== Verification Summary ====="
 check "ESP32 publisher matched ROS2 subscriber" "grep -q 'publisher matched with remote subscriber' '${SERIAL_LOG}'"
 check "ESP32 subscriber matched ROS2 publisher" "grep -q 'subscriber matched with remote publisher' '${SERIAL_LOG}'"
-check "No DEMO NOT READY marker" "test -z \"\$(grep -F 'DEMO NOT READY' '${SERIAL_LOG}' || true)\""
+check "No VALIDATION NOT READY marker" "test -z \"\$(grep -F 'VALIDATION NOT READY' '${SERIAL_LOG}' || true)\""
 check "Warm-up confirmed bidirectional echo" "grep -q 'Warm-up reply confirmed' '${SERIAL_LOG}'"
 check "ROS2 host reply publisher is RELIABLE" "grep -q 'reply=RELIABLE' '${HOST_LOG}'"
 check "ROS2 host sent echo replies" "[ '${host_replies}' -gt 0 ]"
 check "ESP32 received enough ROS2 replies" "[ '${rx_count}' -ge '${MIN_RX}' ]"
 check "No receive-path packet drops" "grep -q 'Packets Dropped:  0' '${SERIAL_LOG}'"
-check "Formal demo reached final phase" "grep -q 'All phases complete' '${SERIAL_LOG}'"
+check "Hardware validation reached final phase" "grep -q 'All phases complete' '${SERIAL_LOG}'"
 check "ESP32 DDS endpoint visible" "grep -q '_CREATED_BY_BARE_DDS_APP_' '${TOPIC_LOG}'"
 
 echo

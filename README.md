@@ -1,6 +1,6 @@
-# mROS2-ESP32 QoS Demo
+# mROS2-ESP32 QoS Hardware Validation
 
-This local project is organized for a real-hardware teacher demo:
+This project provides a real-hardware validation workflow for QoS extensions in mROS2-ESP32:
 
 ```text
 WSL2 ROS2 Humble <-> ESP32-S3 mROS2
@@ -8,25 +8,25 @@ WSL2 ROS2 Humble <-> ESP32-S3 mROS2
 
 USB serial is used only for flashing and observing logs. The actual ROS2/mROS2 communication runs over WiFi using DDS/RTPS.
 
-## Demo Entry Point
+## Validation Entry Point
 
-Use only this workspace for the live demo:
+The primary hardware validation firmware is:
 
 ```text
 workspace/step7_full_qos
 ```
 
-Shortest demo checklist:
+Quick validation checklist:
 
 ```text
-docs/demo/DEMO.md
+docs/validation/QUICK_START.md
 ```
 
-Full runbook:
+Detailed validation procedures:
 
 ```text
-docs/demo/DEMO_RUNBOOK.md
-docs/demo/CHEATSHEET.md
+docs/validation/RUNBOOK.md
+docs/validation/QUICK_REFERENCE.md
 ```
 
 QoS status and evidence:
@@ -41,7 +41,7 @@ docs/qos/QOS_EVIDENCE_MATRIX.md
 Clone this repository:
 
 ```bash
-git clone https://github.com/WANG-Pei777/mROS2-QoS.git
+git clone https://github.com/hal-lab-u-tokyo/mROS2-QoS.git
 cd mROS2-QoS
 ```
 
@@ -53,7 +53,7 @@ cp platform/wifi/wifi_secrets.example.h platform/wifi/wifi_secrets.h
 
 Then edit `platform/wifi/wifi_secrets.h` for the local SSID and password. This file is ignored by git.
 
-The demo scripts generate the local ROS2/WSL target IP in:
+The validation scripts generate the local ROS2/WSL target IP in:
 
 ```text
 platform/rtps/config_local.h
@@ -62,7 +62,7 @@ platform/rtps/config_local.h
 That file is also ignored by git. Run this whenever the WSL IP or network changes:
 
 ```bash
-./scripts/demo/qos_set_remote_ip.sh
+./scripts/validation/qos_set_remote_ip.sh
 ```
 
 ## One-Command Readiness Check
@@ -71,10 +71,10 @@ From WSL:
 
 ```bash
 cd /home/your-user/mROS2-QoS
-./scripts/demo/qos_tomorrow_ready.sh /dev/ttyUSB0 all
+./scripts/validation/qos_ready.sh /dev/ttyUSB0 all
 ```
 
-Only accept the demo as ready when the output contains:
+Only accept the hardware validation as ready when the output contains:
 
 ```text
 [verify] RESULT: PASS
@@ -87,14 +87,14 @@ When using WSL2 mirrored networking, run this once from an elevated Windows Powe
 
 ```powershell
 Set-ExecutionPolicy -Scope Process Bypass
-& "\\wsl.localhost\Ubuntu-22.04\home\your-user\mROS2-QoS\scripts\demo\qos_wsl_firewall_admin.ps1"
+& "\\wsl.localhost\Ubuntu-22.04\home\your-user\mROS2-QoS\scripts\validation\wsl_firewall_admin.ps1"
 ```
 
 This allows DDS/RTPS UDP ports `7400-7420` into WSL.
 
-## Demo Scope
+## Validation Scope
 
-The stable live demo shows:
+The current real-hardware validation path verifies:
 
 ```text
 ESP32 -> ROS2: /step7_full_qos, RELIABLE
@@ -116,7 +116,7 @@ Resource Limits
 Important boundary:
 
 ```text
-This is a QoS extension prototype and real-hardware demo, not a complete product-grade DDS QoS implementation.
+This is a QoS extension prototype and real-hardware validation workflow, not a complete product-grade DDS QoS implementation.
 The strict full-RELIABLE path has passed the current real-hardware preflight and 3-run reset stress test.
 ```
 
@@ -125,9 +125,9 @@ The strict full-RELIABLE path has passed the current real-hardware preflight and
 ```text
 mros2/                    Core mROS2 and embeddedRTPS source
 platform/                 ESP32 WiFi and RTPS platform configuration
-workspace/step7_full_qos/ Final real-hardware QoS demo firmware
-scripts/demo/             Demo, flashing, preflight, and WSL firewall helpers
+workspace/step7_full_qos/ Real-hardware QoS validation firmware
+scripts/validation/       Flashing, preflight, and WSL firewall helpers
 scripts/test/             Static QoS validation checks
-docs/demo/                Live demo instructions
+docs/validation/          Hardware validation instructions
 docs/qos/                 Objective QoS status and evidence matrix
 ```

@@ -23,7 +23,7 @@ class EchoReplyNode(Node):
     def __init__(self):
         super().__init__('echo_reply_node')
 
-        # Subscribe to ESP32 publisher (RELIABLE full-QoS demo)
+        # Subscribe to the ESP32 publisher in the RELIABLE full-QoS validation path.
         sub_qos = QoSProfile(
             history=HistoryPolicy.KEEP_LAST,
             depth=5,

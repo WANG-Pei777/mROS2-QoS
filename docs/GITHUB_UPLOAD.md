@@ -1,6 +1,6 @@
 # GitHub Upload Checklist
 
-This repository contains a real-hardware mROS2-ESP32 QoS demo.
+This repository contains a real-hardware mROS2-ESP32 QoS validation project.
 
 ## Do Not Commit Local Files
 
@@ -21,7 +21,7 @@ Use `git status --ignored --short` if you need to confirm they are ignored.
 This upload package is intentionally flattened into one repository.
 `mros2/` and `mros2/embeddedRTPS/` are normal source directories here, not git submodules.
 
-That makes the teacher/demo repository easier to open and inspect on GitHub.
+That makes the repository easier to open and inspect on GitHub.
 No `git submodule update` step is required after cloning this upload repository.
 
 Commit and push from the repository root:
@@ -29,7 +29,7 @@ Commit and push from the repository root:
 ```bash
 git status
 git add .
-git commit -m "Add ESP32 QoS hardware demo"
+git commit -m "Add ESP32 QoS hardware validation"
 git push -u origin main
 ```
 

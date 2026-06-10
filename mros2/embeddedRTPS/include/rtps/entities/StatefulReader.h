@@ -91,7 +91,7 @@ private:
   void *m_deadlineMissedArg = nullptr;
 
   // Receive path observability. These counters are intentionally lightweight
-  // so ESP32 demos can report what happened without enabling verbose RTPS logs.
+  // so ESP32 validation runs can report what happened without enabling verbose RTPS logs.
   uint32_t m_receivedCount = 0;
   uint32_t m_acceptedBeforeMatchCount = 0;
   uint32_t m_outOfOrderDropCount = 0;

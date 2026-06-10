@@ -174,7 +174,7 @@ namespace mros2
     bool reliable = (qos.reliability == rtps::ReliabilityKind_t::RELIABLE);
 
     // RELIABLE user-data writers should use the matched reader locator directly.
-    // In WSL2/Wi-Fi demos, relying on multicast after discovery can produce a
+  // In WSL2/Wi-Fi validation runs, relying on multicast after discovery can produce a
     // confusing "matched but no data received" state with some ROS2 endpoints.
     bool enforce_unicast = reliable;
 

@@ -1,5 +1,5 @@
 # Run this from an elevated Windows PowerShell.
-# It allows DDS/RTPS UDP traffic used by the WSL2 ROS2 <-> ESP32 mROS2 demo.
+# It allows DDS/RTPS UDP traffic used by the WSL2 ROS2 <-> ESP32 mROS2 validation workflow.
 
 $ErrorActionPreference = "Stop"
 

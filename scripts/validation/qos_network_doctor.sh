@@ -22,7 +22,7 @@ echo "WSL IPv4 for ROS2: ${WSL_IPV4:-unknown}"
 echo "Firmware REMOTE_PARTICIPANT_IP: ${CONFIG_IP:-unknown}"
 if [ -n "${WSL_IPV4}" ] && [ -n "${CONFIG_IP}" ] && [ "${WSL_IPV4}" != "${CONFIG_IP}" ]; then
   echo "[WARN] firmware target IP does not match WSL IPv4. Run:"
-  echo "       ./scripts/demo/qos_set_remote_ip.sh"
+  echo "       ./scripts/validation/qos_set_remote_ip.sh"
 fi
 echo
 

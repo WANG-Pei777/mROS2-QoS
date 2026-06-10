@@ -49,7 +49,7 @@ const uint8_t DOMAIN_ID = 0; // 230 possible with UDP
 const uint8_t NUM_STATELESS_WRITERS = 4;
 const uint8_t NUM_STATELESS_READERS = 4;
 // Pre-configured remote participant (ROS2 in WSL2) for SEDP unicast discovery.
-// scripts/demo/qos_set_remote_ip.sh generates config_local.h with the current
+// scripts/validation/qos_set_remote_ip.sh generates config_local.h with the current
 // machine's WSL IP. The fallback value below is only a public placeholder.
 #if defined(__has_include)
 #if __has_include("config_local.h")

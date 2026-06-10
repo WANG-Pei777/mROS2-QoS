@@ -8,7 +8,7 @@ PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 usage() {
   cat <<'EOF'
 Usage:
-  ./scripts/demo/qos_tomorrow_ready.sh [port] [check|flash|preflight|all]
+  ./scripts/validation/qos_ready.sh [port] [check|flash|preflight|all]
 
 Actions:
   check      Update WSL IP in firmware config, run static checks, build firmware.
@@ -35,11 +35,11 @@ echo "[ready] action=${ACTION}"
 echo
 
 echo "== 1. Update firmware target IP =="
-"${PROJECT_ROOT}/scripts/demo/qos_set_remote_ip.sh"
+"${PROJECT_ROOT}/scripts/validation/qos_set_remote_ip.sh"
 echo
 
 echo "== 2. Environment doctor =="
-"${PROJECT_ROOT}/scripts/demo/qos_network_doctor.sh" "${PORT}" | sed -n '1,120p'
+"${PROJECT_ROOT}/scripts/validation/qos_network_doctor.sh" "${PORT}" | sed -n '1,120p'
 echo
 
 echo "== 3. Static QoS checks =="
@@ -60,24 +60,24 @@ echo
 case "${ACTION}" in
   check)
     echo "[ready] RESULT: CHECK PASS"
-    echo "[ready] To flash and preflight: ./scripts/demo/qos_tomorrow_ready.sh ${PORT} all"
+    echo "[ready] To flash and preflight: ./scripts/validation/qos_ready.sh ${PORT} all"
     ;;
   flash)
     echo "== 5. Flash ESP32 =="
-    QOS_DEMO_MONITOR=0 "${PROJECT_ROOT}/scripts/demo/qos_policy_flash.sh" all "${PORT}"
+    QOS_VALIDATION_MONITOR=0 "${PROJECT_ROOT}/scripts/validation/qos_flash.sh" all "${PORT}"
     echo "[ready] RESULT: FLASH PASS"
     ;;
   preflight)
     echo "== 5. Real-hardware preflight =="
-    "${PROJECT_ROOT}/scripts/demo/qos_demo_preflight.sh" "${PORT}" 3
+    "${PROJECT_ROOT}/scripts/validation/qos_preflight.sh" "${PORT}" 3
     echo "[ready] RESULT: PREFLIGHT PASS"
     ;;
   all)
     echo "== 5. Flash ESP32 =="
-    QOS_DEMO_MONITOR=0 "${PROJECT_ROOT}/scripts/demo/qos_policy_flash.sh" all "${PORT}"
+    QOS_VALIDATION_MONITOR=0 "${PROJECT_ROOT}/scripts/validation/qos_flash.sh" all "${PORT}"
     echo
     echo "== 6. Real-hardware preflight =="
-    "${PROJECT_ROOT}/scripts/demo/qos_demo_preflight.sh" "${PORT}" 3
+    "${PROJECT_ROOT}/scripts/validation/qos_preflight.sh" "${PORT}" 3
     echo "[ready] RESULT: ALL PASS"
     ;;
 esac

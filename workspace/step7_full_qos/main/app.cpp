@@ -22,7 +22,7 @@
 #include <cstring>
 
 // Most ESP32-S3 dev boards place the built-in addressable RGB LED on GPIO48.
-// Clear it at boot so the live demo is not distracted by the bright white LED.
+// Clear it at boot so the hardware validation workflow is not distracted by the bright white LED.
 static void turn_off_onboard_rgb()
 {
   constexpr gpio_num_t rgb_gpio = GPIO_NUM_48;
@@ -321,8 +321,8 @@ extern "C" void app_main(void)
     if (reply_count.load() >= warmup_target_replies) {
       MROS2_INFO("  Warm-up reply confirmed: ROS2 host received ESP32 data and replied.");
     } else {
-      MROS2_ERROR("  DEMO NOT READY: warm-up failed; reset ESP32 or rerun preflight.");
-      MROS2_ERROR("  Formal QoS phases are stopped to avoid a misleading live demo.");
+    MROS2_ERROR("  VALIDATION NOT READY: warm-up failed; reset ESP32 or rerun preflight.");
+      MROS2_ERROR("  Formal QoS phases are stopped to avoid a misleading hardware validation workflow.");
       phase = 6;
       osDelay(osWaitForever);
     }
@@ -379,7 +379,7 @@ extern "C" void app_main(void)
 
     // ---- Phase C: Lifespan logic verification ----
     // NOTE: RTPS-level lifespan (StatefulWriter::progress()) only triggers
-    // when cached messages age before retransmission. The live demo also
+    // when cached messages age before retransmission. The hardware validation workflow also
     // includes app-level fresh/expired checks so the policy has visible
     // evidence even when RTPS cache timing does not naturally expire a sample.
     //

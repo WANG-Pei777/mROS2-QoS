@@ -1,13 +1,13 @@
-# mROS2-ESP32 Demo Documentation
+# mROS2-ESP32 QoS Documentation
 
-当前项目文档只保留明天展示和 QoS 说明需要的内容。
+This directory contains reproducibility notes, hardware validation procedures, and QoS evidence documents.
 
-## Demo
+## Hardware Validation
 
 ```text
-docs/demo/DEMO.md             正式展示最短流程
-docs/demo/CHEATSHEET.md       现场速查
-docs/demo/DEMO_RUNBOOK.md     另一台 Windows + WSL2 电脑复刻流程
+docs/validation/QUICK_START.md      Shortest validation path
+docs/validation/QUICK_REFERENCE.md  Command reference
+docs/validation/RUNBOOK.md          Windows + WSL2 hardware setup and validation flow
 ```
 
 ## QoS Status
@@ -24,4 +24,4 @@ WSL2 ROS2 Humble <-> ESP32-S3 mROS2
 workspace/step7_full_qos
 ```
 
-这个项目当前是 QoS 扩展原型和实机演示，不是完整 DDS QoS 产品级实现。
+This project is a QoS extension prototype and hardware validation workflow, not a complete product-grade DDS QoS implementation.

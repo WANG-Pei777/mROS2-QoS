@@ -20,7 +20,7 @@ for attempt in $(seq 1 "${ATTEMPTS}"); do
   export QOS_VERIFY_SERIAL_LOG="${RESULT_DIR}/attempt_${attempt}_serial.log"
   export QOS_VERIFY_HOST_LOG="${RESULT_DIR}/attempt_${attempt}_host.log"
   export QOS_VERIFY_TOPIC_LOG="${RESULT_DIR}/attempt_${attempt}_topic.log"
-  if "${PROJECT_ROOT}/scripts/demo/qos_live_verify.sh" "${PORT}" "${CAPTURE_SECONDS}" \
+  if "${PROJECT_ROOT}/scripts/validation/qos_verify.sh" "${PORT}" "${CAPTURE_SECONDS}" \
       > "${RESULT_DIR}/attempt_${attempt}_summary.log" 2>&1; then
     cat "${RESULT_DIR}/attempt_${attempt}_summary.log"
     echo "[preflight] RESULT: PASS on attempt ${attempt}"

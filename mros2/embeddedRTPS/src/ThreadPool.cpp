@@ -31,7 +31,7 @@ Author: i11 - Embedded Software, RWTH Aachen University
 
 using rtps::ThreadPool;
 
-#define THREAD_POOL_VERBOSE 0  // Keep live demo output focused; enable only for low-level RTPS debugging.
+#define THREAD_POOL_VERBOSE 0  // Keep hardware validation workflow output focused; enable only for low-level RTPS debugging.
 #if THREAD_POOL_VERBOSE
 #define THREAD_POOL_LOG(...) \
 if (true) { \

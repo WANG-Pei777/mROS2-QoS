@@ -28,7 +28,7 @@ for i in $(seq 1 "${RUNS}"); do
     export QOS_VERIFY_SERIAL_LOG="${RESULT_DIR}/run_${i}_attempt_${attempt}_serial.log"
     export QOS_VERIFY_HOST_LOG="${RESULT_DIR}/run_${i}_attempt_${attempt}_host.log"
     export QOS_VERIFY_TOPIC_LOG="${RESULT_DIR}/run_${i}_attempt_${attempt}_topic.log"
-    if "${PROJECT_ROOT}/scripts/demo/qos_live_verify.sh" "${PORT}" "${CAPTURE_SECONDS}" \
+    if "${PROJECT_ROOT}/scripts/validation/qos_verify.sh" "${PORT}" "${CAPTURE_SECONDS}" \
         > "${RESULT_DIR}/run_${i}_attempt_${attempt}_summary.log" 2>&1; then
       cp "${QOS_VERIFY_SERIAL_LOG}" "${RESULT_DIR}/run_${i}_serial.log"
       cp "${QOS_VERIFY_HOST_LOG}" "${RESULT_DIR}/run_${i}_host.log"

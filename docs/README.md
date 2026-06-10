@@ -13,8 +13,8 @@ docs/validation/RUNBOOK.md          Windows + WSL2 hardware setup and validation
 ## QoS Status
 
 ```text
-docs/qos/QOS_IMPLEMENTATION_STATUS.md  当前 QoS 实现状态和产品级差距
-docs/qos/QOS_EVIDENCE_MATRIX.md        七类 QoS 的证据矩阵
+docs/qos/QOS_IMPLEMENTATION_STATUS.md  Current QoS implementation status and product-grade gaps
+docs/qos/QOS_EVIDENCE_MATRIX.md        Evidence matrix for the validated QoS categories
 ```
 
 ## Scope

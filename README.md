@@ -16,17 +16,17 @@ Use only this workspace for the live demo:
 workspace/step7_full_qos
 ```
 
-Tomorrow's shortest checklist:
+Shortest demo checklist:
 
 ```text
-docs/demo/TOMORROW_DEMO.md
+docs/demo/DEMO.md
 ```
 
 Full runbook:
 
 ```text
 docs/demo/DEMO_RUNBOOK.md
-docs/demo/LIVE_CHEATSHEET.md
+docs/demo/CHEATSHEET.md
 ```
 
 QoS status and evidence:

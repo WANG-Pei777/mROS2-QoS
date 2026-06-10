@@ -5,8 +5,8 @@
 ## Demo
 
 ```text
-docs/demo/TOMORROW_DEMO.md    明天正式展示最短流程
-docs/demo/LIVE_CHEATSHEET.md  现场速查
+docs/demo/DEMO.md             正式展示最短流程
+docs/demo/CHEATSHEET.md       现场速查
 docs/demo/DEMO_RUNBOOK.md     另一台 Windows + WSL2 电脑复刻流程
 ```
 
